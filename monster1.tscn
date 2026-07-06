@@ -71,8 +71,8 @@ animations = [{
 }]
 
 [node name="Monster1" type="CharacterBody2D" unique_id=371753154]
-collision_layer = 4
-collision_mask = 3
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_vsg7x")
 
 [node name="Body" type="CollisionShape2D" parent="." unique_id=1480586960]
