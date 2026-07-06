@@ -35,20 +35,14 @@ collision_mask = 10
 script = ExtResource("1_g1y5l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835264170]
-<<<<<<< Updated upstream
 scale = Vector2(1, 2)
-=======
 position = Vector2(-4, -3.5)
->>>>>>> Stashed changes
 shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1045556339]
 zoom = Vector2(3, 3)
-<<<<<<< Updated upstream
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
 scale = Vector2(0.019, 0.019)
 sprite_frames = SubResource("SpriteFrames_qpdv0")
 animation = &"idle"
-=======
->>>>>>> Stashed changes
