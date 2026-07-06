@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cxln2psrliicl"]
+[gd_scene format=3 uid="uid://5by71sk0n536"]
 
 [ext_resource type="Script" uid="uid://8e1pgbgnosv3" path="res://wander.gd" id="1_g1y5l"]
-[ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_dsosc"]
+[ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_vg4kv"]
 [ext_resource type="Texture2D" uid="uid://dmibh21ml4gob" path="res://art/Walk 1.PNG" id="3_vg4kv"]
 [ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_8w8c0"]
 
@@ -9,6 +9,14 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vg4kv")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_vg4kv")
@@ -30,11 +38,9 @@ scale = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1045556339]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1584724178]
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("2_dsosc")
+zoom = Vector2(3, 3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
+scale = Vector2(0.019, 0.019)
 sprite_frames = SubResource("SpriteFrames_qpdv0")
-animation = &"walk"
+animation = &"idle"

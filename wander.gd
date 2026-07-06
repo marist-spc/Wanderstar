@@ -37,5 +37,19 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_pressed("shoot_star"):
 		star_attack.emit()
 
+	if Input.is_action_pressed("jump"):
+		pass #$AnimatedSprite2D.play("jump")
+
+	if Input.is_action_pressed("move_left"):
+		$AnimatedSprite2D.play("walk")
+		$AnimatedSprite2D.flip_h = true
+
+	elif Input.is_action_pressed("move_right"):
+		$AnimatedSprite2D.play("walk")
+		$AnimatedSprite2D.flip_h = false
+
+	else:
+		$AnimatedSprite2D.play("idle")
+		
 	move_and_slide()
 	

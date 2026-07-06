@@ -1,11 +1,13 @@
-[gd_scene format=3 uid="uid://djjiwok0rwgff"]
+[gd_scene format=3 uid="uid://dlv7yaovjclgg"]
 
 [ext_resource type="Script" uid="uid://ck7t3bt5romst" path="res://star.gd" id="1_46ao5"]
 [ext_resource type="Texture2D" uid="uid://cgqr6tyl082ad" path="res://art/IMG_6537.PNG" id="2_e2x7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtt2"]
+size = Vector2(17.142857, 14.285713)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
+size = Vector2(3.2750015, 1.666666)
 
 [node name="Star" type="CharacterBody2D" unique_id=33048179]
 collision_layer = 4
@@ -13,7 +15,7 @@ collision_mask = 10
 script = ExtResource("1_46ao5")
 
 [node name="StarHitbox" type="CollisionShape2D" parent="." unique_id=1411719163]
-position = Vector2(0, -3)
+position = Vector2(8.940697e-08, -4)
 scale = Vector2(0.7, 0.7)
 shape = SubResource("RectangleShape2D_wjtt2")
 
@@ -26,7 +28,7 @@ collision_layer = 4
 collision_mask = 8
 
 [node name="AttackHitbox" type="CollisionShape2D" parent="Node2D" unique_id=1277072764]
-position = Vector2(50, 0)
+position = Vector2(12.999999, -4)
 scale = Vector2(5, 1.5)
 shape = SubResource("RectangleShape2D_qpdv0")
 
