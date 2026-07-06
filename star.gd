@@ -6,6 +6,7 @@ func _ready():
 	$Node2D/AttackHitbox.disabled = true
 
 func _on_wander_recall(pos):
+	position = pos
 	target_position = pos
 	
 func _on_wander_star_move(pos):
@@ -14,12 +15,18 @@ func _on_wander_star_move(pos):
 func _physics_process(delta):
 	#move the star to wherever its supposed to be going
 	if target_position != position:
-		position = position.move_toward(target_position, 1000*delta)
-	# difference of target_pos and pos is the vector pointing to where star should go
-	# this can be the velocity
-	# then use move_and_slide to actually move star with collision-0detection
+		var direction = (target_position - position).normalized()
+		#controls direction and speed, log is used for smoothing
+		velocity = direction * 50 * log(target_position.distance_to(position))
+	if target_position.distance_to(position) < 3:
+		velocity = position*0
+		
+		
 func _process(delta):
 	look_at(get_global_mouse_position())
+	position += velocity * delta
+	
+	move_and_slide()
 
 
 func _on_wander_star_attack():
