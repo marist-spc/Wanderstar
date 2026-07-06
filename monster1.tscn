@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://cy5qhhyvww8rw" path="res://monster_1.gd" id="1_vsg7x"]
 [ext_resource type="Texture2D" uid="uid://biiwu5f26b6lo" path="res://art/monster/s_crapmunch_walk_strip8.png" id="2_unc4o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(81.6716, 70.47999)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_mdl0f"]
 atlas = ExtResource("2_unc4o")
 region = Rect2(0, 0, 109, 78)
@@ -70,15 +67,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Monster1" type="CharacterBody2D" unique_id=371753154]
-collision_layer = 4
-collision_mask = 3
-script = ExtResource("1_vsg7x")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
+size = Vector2(60, 40)
 
-[node name="Body" type="CollisionShape2D" parent="." unique_id=1480586960]
-position = Vector2(-1.0000007, 0.73214304)
-scale = Vector2(0.46527803, 0.44642866)
-shape = SubResource("RectangleShape2D_g4v7s")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(81.6716, 70.47999)
+
+[node name="Monster1" type="CharacterBody2D" unique_id=1055338569]
+collision_layer = 8
+collision_mask = 7
+script = ExtResource("1_vsg7x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1013256716]
 position = Vector2(1.9073486e-06, -1)
@@ -87,6 +85,20 @@ sprite_frames = SubResource("SpriteFrames_g4v7s")
 animation = &"walk"
 frame_progress = 0.5532759
 
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=175729602]
+collision_layer = 8
+collision_mask = 4
+
+[node name="Hitbox" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1656060334]
+shape = SubResource("RectangleShape2D_qpdv0")
+
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1987290224]
 target_position = Vector2(0, 25)
 collision_mask = 2
+
+[node name="Body" type="CollisionShape2D" parent="." unique_id=1480586960]
+position = Vector2(-1.0000007, 0.73214316)
+scale = Vector2(0.46527803, 0.4464287)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[connection signal="area_shape_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_area_shape_entered"]

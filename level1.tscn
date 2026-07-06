@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://5cg6wtnehf32" path="res://art/fantasy_background.png" id="1_ootpb"]
 [ext_resource type="PackedScene" uid="uid://d4g0o6c6i0hc" path="res://tile_map_layer.tscn" id="2_v38iq"]
-[ext_resource type="PackedScene" uid="uid://5by71sk0n536" path="res://wander.tscn" id="4_v8kj3"]
+[ext_resource type="PackedScene" uid="uid://cxln2psrliicl" path="res://wander.tscn" id="4_v8kj3"]
 [ext_resource type="PackedScene" uid="uid://cmtheqayvhiwg" path="res://monster1.tscn" id="4_v38iq"]
-[ext_resource type="PackedScene" uid="uid://dlv7yaovjclgg" path="res://star.tscn" id="5_crycw"]
+[ext_resource type="PackedScene" uid="uid://djjiwok0rwgff" path="res://star.tscn" id="5_crycw"]
 
 [node name="Level1" type="Node2D" unique_id=1039245021]
 
@@ -32,4 +32,8 @@ position = Vector2(704, 397)
 position = Vector2(159, 398)
 
 [node name="Star" parent="." unique_id=33048179 instance=ExtResource("5_crycw")]
-position = Vector2(104, 307)
+position = Vector2(267, 336)
+
+[connection signal="recall" from="Wander" to="Star" method="_on_wander_recall"]
+[connection signal="star_attack" from="Wander" to="Star" method="_on_wander_star_attack"]
+[connection signal="star_move" from="Wander" to="Star" method="_on_wander_star_move"]

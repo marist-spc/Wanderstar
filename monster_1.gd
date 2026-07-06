@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var direction = -1
+var health = 3
 		
 func _physics_process(delta: float): #Basic Goomba Code
 	
@@ -25,3 +26,10 @@ func _physics_process(delta: float): #Basic Goomba Code
 		velocity.x = -40
 		
 	move_and_slide()
+
+
+func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	health -= 1
+	if health == 0:
+		hide()
+	
