@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dbws6ihmf7kwt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(260, 11)
+
+[node name="FallDetector" type="RigidBody2D" unique_id=1420461550]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1475714688]
+position = Vector2(120, -4.5)
+shape = SubResource("RectangleShape2D_yf5fn")
