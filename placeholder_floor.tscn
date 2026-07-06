@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dkmpivbg7qf4h"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dqq8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
+size = Vector2(1000, 20)
+
+[node name="Placeholder Floor" type="Node2D" unique_id=1796269507]
+
+[node name="RigidBody2D" type="StaticBody2D" parent="." unique_id=1482595885]
+disable_mode = 1
+collision_layer = 2
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_dqq8g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=520466979]
+position = Vector2(582, 540)
+shape = SubResource("RectangleShape2D_qpdv0")
