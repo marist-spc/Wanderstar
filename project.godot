@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Wander & Star"
-run/main_scene="uid://coismo8quy7gv"
+config/name="Wander Star"
+run/main_scene="uid://c7c25r2cu1vfv"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -57,16 +57,12 @@ star_return={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
 ]
 }
-left={
-"deadzone": 0.2,
-"events": []
-}
 
 [layer_names]
 
-2d_physics/layer_1="Player"
-2d_physics/layer_2="World"
-2d_physics/layer_3="Enemies"
+2d_physics/layer_1="player"
+2d_physics/layer_2="floor"
+2d_physics/layer_3="star"
 2d_physics/layer_4="enemy"
 
 [physics]

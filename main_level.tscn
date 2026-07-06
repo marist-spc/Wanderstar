@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c7c25r2cu1vfv"]
+
+[ext_resource type="PackedScene" uid="uid://cxln2psrliicl" path="res://wander.tscn" id="1_6614m"]
+[ext_resource type="PackedScene" uid="uid://djjiwok0rwgff" path="res://star.tscn" id="2_bhu08"]
+[ext_resource type="PackedScene" uid="uid://dkmpivbg7qf4h" path="res://placeholder_floor.tscn" id="3_bhu08"]
+
+[node name="Main Level" type="Node2D" unique_id=1385135007]
+
+[node name="Wander" parent="." unique_id=544053539 instance=ExtResource("1_6614m")]
+position = Vector2(285, 75)
+
+[node name="Placeholder Floor" parent="." unique_id=1796269507 instance=ExtResource("3_bhu08")]
+position = Vector2(-157, -251)
+
+[node name="Star" parent="." unique_id=369523685 instance=ExtResource("2_bhu08")]
+
+[connection signal="recall" from="Wander" to="Star" method="_on_wander_recall"]
+[connection signal="star_attack" from="Wander" to="Star" method="_on_wander_star_attack"]
+[connection signal="star_move" from="Wander" to="Star" method="_on_wander_star_move"]

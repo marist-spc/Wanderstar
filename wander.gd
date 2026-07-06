@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
 signal recall
 signal star_move
 signal star_attack
