@@ -1,2 +1,2 @@
-# wander-&-star
+# Wanderstar
 
