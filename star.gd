@@ -18,8 +18,12 @@ func _physics_process(delta):
 	
 func _process(delta):
 	look_at(get_global_mouse_position())
-	$Node2D/AttackHitbox.disabled = true
 
 
 func _on_wander_star_attack():
 	$Node2D/AttackHitbox.disabled = false
+	$"Attack Timer".start()
+
+
+func _on_attack_timer_timeout():
+	$Node2D/AttackHitbox.disabled = true
