@@ -1,5 +1,53 @@
-[gd_scene format=3 uid="uid://b7k8b8bo02iqv"]
+[gd_scene format=3 uid="uid://1gdtmb4hxfva"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1176114952]
+[ext_resource type="Script" uid="uid://cchqy7kq67sj" path="res://player.gd" id="1_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://y7inp14qfenw" path="res://dodge_the_creeps_2d_assets/art/playerGrey_walk1.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://c3iok786um8uq" path="res://dodge_the_creeps_2d_assets/art/playerGrey_up1.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bnu6mteq0tr4w" path="res://dodge_the_creeps_2d_assets/art/playerGrey_up2.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://cmeatb01vlbip" path="res://dodge_the_creeps_2d_assets/art/playerGrey_walk2.png" id="3_sweqy"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=797721974]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}],
+"loop": 1,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqtel")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sweqy")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qpdv0"]
+radius = 28.0
+height = 68.0
+
+[node name="Player" type="Area2D" unique_id=986257176]
+position = Vector2(219, 214)
+collision_layer = 0
+script = ExtResource("1_i3pqv")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1414795789]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_qpdv0")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171347930]
+shape = SubResource("CapsuleShape2D_qpdv0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
