@@ -1,18 +1,17 @@
-[gd_scene format=3 uid="uid://5by71sk0n536"]
+[gd_scene format=3 uid="uid://cxln2psrliicl"]
 
 [ext_resource type="Script" uid="uid://8e1pgbgnosv3" path="res://wander.gd" id="1_g1y5l"]
-[ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_vg4kv"]
+[ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_dsosc"]
 [ext_resource type="Texture2D" uid="uid://dmibh21ml4gob" path="res://art/Walk 1.PNG" id="3_vg4kv"]
 [ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_8w8c0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
-size = Vector2(25, 22.25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vg4kv")
+"texture": ExtResource("2_dsosc")
 }],
 "loop": 1,
 "name": &"idle",
@@ -30,19 +29,31 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tumr7"]
+
 [node name="Wander" type="CharacterBody2D" unique_id=544053539]
-collision_mask = 10
+collision_mask = 2
 script = ExtResource("1_g1y5l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835264170]
-position = Vector2(-2.5, 1.25)
 scale = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1045556339]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
-scale = Vector2(0.019, 0.019)
+scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_qpdv0")
-animation = &"idle"
+animation = &"walk"
+frame_progress = 0.93344706
+offset = Vector2(40, 0)
+
+[node name="Hit Box" type="Area2D" parent="." unique_id=2109985375]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit Box" unique_id=1612464714]
+scale = Vector2(0.8, 1.5)
+shape = SubResource("RectangleShape2D_tumr7")
+
+[connection signal="area_shape_entered" from="Hit Box" to="." method="_on_hit_box_area_shape_entered"]
