@@ -31,5 +31,5 @@ func _physics_process(delta: float): #Basic Goomba Code
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	health -= 1
 	if health == 0:
-		hide()
+		queue_free()
 	
