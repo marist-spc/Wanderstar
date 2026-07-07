@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c027yu1eqtfg7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(34, 56)
+
+[node name="CameraChange" type="Area2D" unique_id=777528388]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2126417619]
+position = Vector2(7, 46)
+shape = SubResource("RectangleShape2D_g4v7s")

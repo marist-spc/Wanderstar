@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmtheqayvhiwg" path="res://monster1.tscn" id="4_v38iq"]
 [ext_resource type="PackedScene" uid="uid://dlv7yaovjclgg" path="res://star.tscn" id="5_crycw"]
 [ext_resource type="PackedScene" uid="uid://dbws6ihmf7kwt" path="res://fall_detector.tscn" id="6_crycw"]
+[ext_resource type="PackedScene" uid="uid://c027yu1eqtfg7" path="res://camera_change.tscn" id="7_i2041"]
 
 [node name="Level1" type="Node2D" unique_id=1039245021]
 
@@ -41,7 +42,12 @@ position = Vector2(207, 366)
 [node name="FallDetector" parent="." unique_id=1493091023 instance=ExtResource("6_crycw")]
 position = Vector2(278, 535)
 
+[node name="CameraChange" parent="." unique_id=777528388 instance=ExtResource("7_i2041")]
+position = Vector2(1209, 396)
+
 [connection signal="recall" from="Wander" to="Star" method="_on_wander_recall"]
 [connection signal="star_attack" from="Wander" to="Star" method="_on_wander_star_attack"]
 [connection signal="star_move" from="Wander" to="Star" method="_on_wander_star_move"]
 [connection signal="body_entered" from="FallDetector" to="Wander" method="_on_fall_detector_body_entered"]
+[connection signal="body_entered" from="CameraChange" to="Wander" method="_on_camera_change_body_entered"]
+[connection signal="body_exited" from="CameraChange" to="Wander" method="_on_camera_change_body_exited"]

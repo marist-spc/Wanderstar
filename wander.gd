@@ -67,3 +67,15 @@ func _on_fall_detector_body_entered(body: Node) -> void:
 	health -= 1
 	fallbackpos.x -= 75
 	position = fallbackpos
+
+
+func _on_camera_change_body_entered(body: Node2D) -> void:
+	$Camera2D.zoom.x = 2
+	$Camera2D.zoom.y = 2
+	$Camera2D.offset.y = -100
+
+
+func _on_camera_change_body_exited(body: Node2D) -> void:
+	$Camera2D.zoom.x = 3
+	$Camera2D.zoom.y = 3
+	$Camera2D.offset.y = 0
