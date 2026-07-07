@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dbws6ihmf7kwt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
-size = Vector2(260, 11)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(437, 29)
 
-[node name="FallDetector" type="RigidBody2D" unique_id=1420461550]
+[node name="FallDetector" type="Area2D" unique_id=1669858667]
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1475714688]
-position = Vector2(120, -4.5)
-shape = SubResource("RectangleShape2D_yf5fn")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1158562738]
+position = Vector2(208.5, 4.5)
+shape = SubResource("RectangleShape2D_g4v7s")

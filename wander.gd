@@ -8,6 +8,7 @@ signal recall
 signal star_move
 signal star_attack
 var health = 3
+var fallbackpos: Vector2
 
 func _process(delta):
 	var mouse_position = get_global_mouse_position()
@@ -16,6 +17,8 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	else:
+		fallbackpos = position
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -59,11 +62,8 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("idle")
 		
 	move_and_slide()
-	
 
-	
-	
-
-
-func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
+func _on_fall_detector_body_entered(body: Node) -> void:
+	health -= 1
+	fallbackpos.x -= 75
+	position = fallbackpos
