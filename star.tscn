@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://dlv7yaovjclgg"]
 
 [ext_resource type="Script" uid="uid://ck7t3bt5romst" path="res://star.gd" id="1_46ao5"]
+[ext_resource type="Texture2D" uid="uid://bhvqto8b75p18" path="res://art/yellow star attack beam.PNG" id="2_0ar2v"]
 [ext_resource type="Texture2D" uid="uid://cgqr6tyl082ad" path="res://art/IMG_6537.PNG" id="2_e2x7v"]
+[ext_resource type="Texture2D" uid="uid://d3wk8txacactm" path="res://art/Yellow star teleport 1.PNG" id="3_d7oe7"]
+[ext_resource type="Texture2D" uid="uid://buw2t8bqnnpqf" path="res://art/Yellow star teleport 2.PNG" id="4_dvwch"]
+[ext_resource type="Texture2D" uid="uid://bfx6qovbtid4g" path="res://art/Shrunken yellow star 1.PNG" id="4_ou736"]
+[ext_resource type="Texture2D" uid="uid://dcvo4uxi6sdlr" path="res://art/Yellow star teleport 3 (1).PNG" id="5_fi5u8"]
+[ext_resource type="Texture2D" uid="uid://c7xjtnwjro4iu" path="res://art/Shrunken yellow star 2.PNG" id="5_frsb1"]
+[ext_resource type="Texture2D" uid="uid://dnws26r0rrsj7" path="res://art/Yellow star teleport 4.PNG" id="6_0ar2v"]
+[ext_resource type="Texture2D" uid="uid://cuv8jvsepy2l3" path="res://art/Shrunken yellow star 3.PNG" id="6_w0tmw"]
+[ext_resource type="AudioStream" uid="uid://coa8djq3fb3sj" path="res://art/Star attack.mp3" id="8_ynkmc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtt2"]
 size = Vector2(17.142857, 14.285713)
@@ -18,6 +27,35 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ou736")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_frsb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w0tmw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d7oe7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dvwch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fi5u8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0ar2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e2x7v")
+}],
+"loop": 0,
+"name": &"teleport",
+"speed": 15.0
 }]
 
 [node name="Star" type="CharacterBody2D" unique_id=33048179]
@@ -39,6 +77,12 @@ position = Vector2(17.406248, -4)
 scale = Vector2(5, 1.5)
 shape = SubResource("RectangleShape2D_qpdv0")
 
+[node name="AttackAnimation" type="Sprite2D" parent="Node2D" unique_id=1438961231]
+position = Vector2(15, 0)
+scale = Vector2(0.018, 0.009)
+texture = ExtResource("2_0ar2v")
+flip_h = true
+
 [node name="Attack Timer" type="Timer" parent="." unique_id=1097621042]
 wait_time = 0.3
 one_shot = true
@@ -46,6 +90,11 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1780112394]
 scale = Vector2(0.01, 0.01)
 sprite_frames = SubResource("SpriteFrames_qpdv0")
-animation = &"idle"
+animation = &"teleport"
+frame = 7
+frame_progress = 1.0
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=1828472815]
+stream = ExtResource("8_ynkmc")
 
 [connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]

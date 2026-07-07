@@ -4,11 +4,14 @@ var target_position = position
 
 func _ready():
 	$Node2D/AttackHitbox.disabled = true
+	$Node2D/AttackAnimation.hide()
+	$AnimatedSprite2D.play("idle")
 
 func _on_wander_recall(pos):
 	pos.x += 20
 	position = pos
 	target_position = pos
+	$AnimatedSprite2D.play("teleport")
 	
 func _on_wander_star_move(pos):
 	target_position = pos
@@ -42,9 +45,12 @@ func _process(delta):
 func _on_wander_star_attack():
 	#creates attack HB and starts a timer to recall the HB
 	$Node2D/AttackHitbox.disabled = false
+	$Node2D/AttackAnimation.show()
 	$"Attack Timer".start()
+	$AttackSound.play()
 
 
 func _on_attack_timer_timeout():
 	#after amt of time end the attack
 	$Node2D/AttackHitbox.disabled = true
+	$Node2D/AttackAnimation.hide()
