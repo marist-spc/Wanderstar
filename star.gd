@@ -1,23 +1,25 @@
 extends CharacterBody2D
 
 var target_position = position
+var colors = ["yellow", "purple"]
+var color_index = 0
+var current_star = "yellow"
+@export var wander: CharacterBody2D
 
 func _ready():
 	$Node2D/AttackHitbox.disabled = true
 	$Node2D/AttackAnimation.hide()
-	$AnimatedSprite2D.play("idle")
+	$SpriteController/YellowAnimations.play("idle")
+	$SpriteController/PurpleAnimations.play("hide")
 
-func _on_wander_recall(pos):
-	pos.x += 20
-	position = pos
-	target_position = pos
-	$AnimatedSprite2D.play("teleport")
-	
-func _on_wander_star_move(pos):
-	target_position = pos
+
 
 func _physics_process(delta):
 	#move the star to wherever its supposed to be going
+	
+	if current_star == "purple":
+		target_position = wander.position
+	
 	if target_position != position:
 		var direction = (target_position - position).normalized()
 		#controls direction and speed, log is used for smoothing
@@ -29,17 +31,25 @@ func _physics_process(delta):
 		
 func _process(delta):
 	#makes the star follow mouse position
-	if get_global_mouse_position().x >= position.x:
-		$AnimatedSprite2D.flip_h = false
-		look_at(get_global_mouse_position())
-	elif get_global_mouse_position().x < position.x:
-		$AnimatedSprite2D.flip_h = true
-		#var
-		look_at(get_global_mouse_position())
+	get_global_mouse_position()
+	look_at(get_global_mouse_position())
 	
 	#normal movement stuff
 	position += velocity * delta
 	move_and_slide()
+	
+	
+func _on_wander_recall(pos):
+	if current_star != "purple":
+		pos.x += 20
+		position = pos
+		target_position = pos
+		$SpriteController/YellowAnimations.play("teleport")
+	
+func _on_wander_star_move(pos):
+	if current_star != "purple":
+		target_position = pos
+	
 
 
 func _on_wander_star_attack():
@@ -53,4 +63,22 @@ func _on_wander_star_attack():
 func _on_attack_timer_timeout():
 	#after amt of time end the attack
 	$Node2D/AttackHitbox.disabled = true
-	$Node2D/AttackAnimation.hide()
+	$Node2D/AttackAnimation.hide() 
+
+
+func _on_wander_star_swap() -> void:
+	color_index += 1
+	if color_index >= colors.size():
+		color_index = 0
+	current_star = colors[color_index]
+	print(current_star)
+	
+	#Show the current star anim and hide the inactive ones
+	if current_star == "yellow":
+		$SpriteController/PurpleAnimations.visible = false
+		$SpriteController/YellowAnimations.visible = true
+		$SpriteController/YellowAnimations.play("idle")
+	elif current_star == "purple":
+		$SpriteController/PurpleAnimations.visible = true
+		$SpriteController/YellowAnimations.visible = false
+		$SpriteController/PurpleAnimations.play("idle")

@@ -7,11 +7,10 @@ const JUMP_VELOCITY = -350.0
 signal recall
 signal star_move
 signal star_attack
+signal star_swap
 var health = 3
 var fallbackpos: Vector2
 
-func _process(delta):
-	var mouse_position = get_global_mouse_position()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -44,8 +43,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_star"):
 		#move star to mouse
 		star_move.emit(get_global_mouse_position())
+		
 	if Input.is_action_just_pressed("shoot_star"):
 		star_attack.emit()
+	
+	if Input.is_action_just_pressed("swap_star"):
+		star_swap.emit()
 
 	if Input.is_action_pressed("jump"):
 		pass #$AnimatedSprite2D.play("jump")

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bfx6qovbtid4g" path="res://art/Shrunken yellow star 1.PNG" id="4_ou736"]
 [ext_resource type="Texture2D" uid="uid://dcvo4uxi6sdlr" path="res://art/Yellow star teleport 3 (1).PNG" id="5_fi5u8"]
 [ext_resource type="Texture2D" uid="uid://c7xjtnwjro4iu" path="res://art/Shrunken yellow star 2.PNG" id="5_frsb1"]
+[ext_resource type="Texture2D" uid="uid://728aul5caygh" path="res://art/IMG_6547.PNG" id="5_w0tmw"]
 [ext_resource type="Texture2D" uid="uid://dnws26r0rrsj7" path="res://art/Yellow star teleport 4.PNG" id="6_0ar2v"]
 [ext_resource type="Texture2D" uid="uid://cuv8jvsepy2l3" path="res://art/Shrunken yellow star 3.PNG" id="6_w0tmw"]
 [ext_resource type="AudioStream" uid="uid://coa8djq3fb3sj" path="res://art/Star attack.mp3" id="8_ynkmc"]
@@ -20,6 +21,11 @@ size = Vector2(5.037501, 1.666666)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"hide",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_e2x7v")
@@ -58,6 +64,22 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjtt2"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"hide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_w0tmw")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="Star" type="CharacterBody2D" unique_id=33048179]
 collision_layer = 4
 collision_mask = 10
@@ -87,14 +109,19 @@ flip_h = true
 wait_time = 0.3
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1780112394]
-scale = Vector2(0.01, 0.01)
-sprite_frames = SubResource("SpriteFrames_qpdv0")
-animation = &"teleport"
-frame = 7
-frame_progress = 1.0
-
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=1828472815]
 stream = ExtResource("8_ynkmc")
+
+[node name="SpriteController" type="Node2D" parent="." unique_id=255558145]
+
+[node name="YellowAnimations" type="AnimatedSprite2D" parent="SpriteController" unique_id=1780112394]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_qpdv0")
+animation = &"hide"
+
+[node name="PurpleAnimations" type="AnimatedSprite2D" parent="SpriteController" unique_id=1319120787]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_wjtt2")
+animation = &"hide"
 
 [connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]

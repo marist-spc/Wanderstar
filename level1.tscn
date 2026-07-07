@@ -36,8 +36,9 @@ position = Vector2(865, 298)
 [node name="Wander" parent="." unique_id=544053539 instance=ExtResource("4_v8kj3")]
 position = Vector2(183, 394)
 
-[node name="Star" parent="." unique_id=33048179 instance=ExtResource("5_crycw")]
+[node name="Star" parent="." unique_id=33048179 node_paths=PackedStringArray("wander") instance=ExtResource("5_crycw")]
 position = Vector2(207, 366)
+wander = NodePath("../Wander")
 
 [node name="FallDetector" parent="." unique_id=1493091023 instance=ExtResource("6_crycw")]
 position = Vector2(278, 535)
@@ -48,6 +49,7 @@ position = Vector2(1209, 396)
 [connection signal="recall" from="Wander" to="Star" method="_on_wander_recall"]
 [connection signal="star_attack" from="Wander" to="Star" method="_on_wander_star_attack"]
 [connection signal="star_move" from="Wander" to="Star" method="_on_wander_star_move"]
+[connection signal="star_swap" from="Wander" to="Star" method="_on_wander_star_swap"]
 [connection signal="body_entered" from="FallDetector" to="Wander" method="_on_fall_detector_body_entered"]
 [connection signal="body_entered" from="CameraChange" to="Wander" method="_on_camera_change_body_entered"]
 [connection signal="body_exited" from="CameraChange" to="Wander" method="_on_camera_change_body_exited"]
