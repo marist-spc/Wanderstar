@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_8w8c0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
-size = Vector2(28, 27)
+size = Vector2(25, 22.25)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
 animations = [{
@@ -35,8 +35,8 @@ collision_mask = 10
 script = ExtResource("1_g1y5l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835264170]
+position = Vector2(-2.5, 1.25)
 scale = Vector2(1, 2)
-position = Vector2(-4, -3.5)
 shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1045556339]
