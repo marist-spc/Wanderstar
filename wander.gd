@@ -7,10 +7,11 @@ const JUMP_VELOCITY = -350.0
 signal recall
 signal star_move
 signal star_attack
+signal took_damage
 var health = 3
 
-func _process(delta):
-	var mouse_position = get_global_mouse_position()
+func _process(delta: float) -> void:
+	var _mouse_position = get_global_mouse_position()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -60,10 +61,15 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 	
-
+func die():
+	queue_free()
 	
 	
 
 
-func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.
+func _on_area_2d_area_shape_entered():
+	print("hit")
+	emit_signal("took_damage")
+	health -= 1
+	if health == 0:
+		die()
