@@ -54,7 +54,7 @@ offset = Vector2(40, 0)
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hit Box" unique_id=1612464714]
-scale = Vector2(0.8, 1.5)
+scale = Vector2(0.9, 2)
 shape = SubResource("RectangleShape2D_tumr7")
 
 [connection signal="area_shape_entered" from="Hit Box" to="." method="_on_hit_box_area_shape_entered"]
