@@ -28,6 +28,9 @@ tile_map_data = PackedByteArray("AAAHABoAAgAJAAgAAAAIABoAAgAJAAgAAAAJABoAAgAJAAg
 [node name="Monster1" parent="." unique_id=371753154 instance=ExtResource("4_v38iq")]
 position = Vector2(704, 397)
 
+[node name="Monster2" parent="." unique_id=1055338569 instance=ExtResource("4_v38iq")]
+position = Vector2(865, 298)
+
 [node name="Wander" parent="." unique_id=544053539 instance=ExtResource("4_v8kj3")]
 position = Vector2(183, 394)
 
