@@ -11,6 +11,8 @@ signal star_swap
 var health = 3
 var fallbackpos: Vector2
 
+func ready():
+	$AnimatedSprite2D.play("idle")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -22,20 +24,19 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		$AnimatedSprite2D.play("jump")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_pressed("move_left"):
 		velocity.x = -SPEED
 		$AnimatedSprite2D.flip_h = true
-		$AnimatedSprite2D.play("walk")
 	elif Input.is_action_pressed("move_right"):
 		velocity.x =  SPEED
 		$AnimatedSprite2D.flip_h = false
-		$AnimatedSprite2D.play("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		$AnimatedSprite2D.play("idle")
+		#$AnimatedSprite2D.play("idle")
 		
 	if Input.is_action_pressed("star_return"):
 		#move star to player
@@ -50,20 +51,25 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("swap_star"):
 		star_swap.emit()
 
-	if Input.is_action_pressed("jump"):
-		pass #$AnimatedSprite2D.play("jump")
-
 	if Input.is_action_pressed("move_left"):
-		$AnimatedSprite2D.play("walk")
+		if is_on_floor():
+			$AnimatedSprite2D.play("walk")
 		$AnimatedSprite2D.flip_h = true
 
 	elif Input.is_action_pressed("move_right"):
-		$AnimatedSprite2D.play("walk")
+		if is_on_floor():
+			$AnimatedSprite2D.play("walk")
 		$AnimatedSprite2D.flip_h = false
-
-	else:
+	
+	elif is_on_floor():
+		print("sigma")
 		$AnimatedSprite2D.play("idle")
-		
+	
+	if Input.is_action_just_pressed("jump"):
+		print("boomshakalaka")
+		$AnimatedSprite2D.play("jump")
+	
+	print($AnimatedSprite2D.animation)
 	move_and_slide()
 
 func _on_fall_detector_body_entered(body: Node) -> void:
