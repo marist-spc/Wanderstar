@@ -57,4 +57,9 @@ collision_mask = 8
 scale = Vector2(0.9, 2)
 shape = SubResource("RectangleShape2D_tumr7")
 
+[node name="DamageTimer" type="Timer" parent="." unique_id=900452409]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="area_shape_entered" from="Hit Box" to="." method="_on_hit_box_area_shape_entered"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
