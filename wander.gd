@@ -68,6 +68,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_fall_detector_body_entered(body: Node) -> void:
 	health -= 1
+	$AnimatedSprite2D.modulate = Color(1, 0, 0)
+	$DamageTimer.start()
 	fallbackpos.x -= 75
 	position = fallbackpos
 
@@ -82,3 +84,7 @@ func _on_camera_change_body_exited(body: Node2D) -> void:
 	$Camera2D.zoom.x = 3
 	$Camera2D.zoom.y = 3
 	$Camera2D.offset.y = 0
+
+
+func _on_damage_timer_timeout() -> void:
+	$AnimatedSprite2D.modulate = Color(1, 1, 1)

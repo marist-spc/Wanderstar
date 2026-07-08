@@ -11,7 +11,8 @@ func _ready():
 	$Node2D/AttackHitbox.disabled = true
 	$Node2D/AttackAnimation.hide()
 	$SpriteController/YellowAnimations.play("idle")
-	$SpriteController/PurpleAnimations.play("hide")
+	$SpriteController/PurpleAnimations.play("idle")
+	$SpriteController/PurpleAnimations.visible = false
 	$ExplodeControl/MovingHitbox.disabled = true
 	$Explosion/ExplosionHitbox.disabled = true
 
