@@ -67,7 +67,7 @@ position = Vector2(1756, 629)
 position = Vector2(1209, 396)
 
 [node name="Button" parent="." unique_id=1376307777 instance=ExtResource("8_xy4tn")]
-position = Vector2(1216, 304)
+position = Vector2(1211, 304)
 collision_layer = 2
 
 [node name="Door" parent="." unique_id=804038756 instance=ExtResource("9_5j5gb")]
