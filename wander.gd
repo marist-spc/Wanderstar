@@ -1,7 +1,4 @@
 extends CharacterBody2D
-
-
-
 const SPEED = 180.0
 const JUMP_VELOCITY = -350.0
 signal recall
@@ -11,18 +8,15 @@ signal star_swap
 var health = 3
 var fallbackpos: Vector2
 
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	else:
 		fallbackpos = position
-
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_pressed("move_left"):
@@ -73,25 +67,20 @@ func _on_fall_detector_body_entered(body: Node) -> void:
 	fallbackpos.x -= 75
 	position = fallbackpos
 
-
 func _on_camera_change_body_entered(body: Node2D) -> void:
 	$Camera2D.zoom.x = 2
 	$Camera2D.zoom.y = 2
 	$Camera2D.offset.y = -100
-
 
 func _on_camera_change_body_exited(body: Node2D) -> void:
 	$Camera2D.zoom.x = 3
 	$Camera2D.zoom.y = 3
 	$Camera2D.offset.y = 0
 
-
 func _on_damage_timer_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
 
-
 func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
-	#$Camera2D/Dialogue.set_deferred("testing")
 	$Camera2D/Dialogue.text = "WASD moves and Spacebar is to Jump!"
 	$Camera2D/Dialogue.show()
 
@@ -99,10 +88,24 @@ func _on_dialogue_trigger_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
 func _on_dialogue_trigger_2_body_entered(body: Node2D) -> void:
-	#$Camera2D/Dialogue.set_deferred("testing")
 	$Camera2D/Dialogue.text = "Hold Right Click to Move Star
 	and left click to attack Enemies!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_2_body_exited(body: Node2D) -> void:
+	$Camera2D/Dialogue.hide()
+
+func _on_dialogue_trigger_3_body_entered(body: Node2D) -> void:
+	$Camera2D/Dialogue.text = "Monoliths appear when there is a puzzle to be solved!"
+	$Camera2D/Dialogue.show()
+
+func _on_dialogue_trigger_3_body_exited(body: Node2D) -> void:
+	$Camera2D/Dialogue.hide()
+
+
+func _on_dialogue_trigger_4_body_entered(body: Node2D) -> void:
+	$Camera2D/Dialogue.text = "Press Q to Call Star Back!"
+	$Camera2D/Dialogue.show()
+
+func _on_dialogue_trigger_4_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
