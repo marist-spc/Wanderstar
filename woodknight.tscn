@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cn0edghhje151"]
+
+[ext_resource type="Script" uid="uid://b1imdaoshr13y" path="res://woodknight.gd" id="1_1gm4f"]
+[ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_pu8aw"]
+[ext_resource type="Texture2D" uid="uid://dmibh21ml4gob" path="res://art/Walk 1.PNG" id="3_vwbba"]
+[ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_6fam0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
+size = Vector2(25, 22.25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pu8aw")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vwbba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6fam0")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tumr7"]
+
+[node name="Woodknight" type="CharacterBody2D" unique_id=544053539]
+collision_mask = 2
+script = ExtResource("1_1gm4f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835264170]
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_qpdv0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
+scale = Vector2(0.02, 0.02)
+sprite_frames = SubResource("SpriteFrames_qpdv0")
+animation = &"walk"
+frame_progress = 0.93344706
+offset = Vector2(40, 0)
+
+[node name="Hit Box" type="Area2D" parent="." unique_id=2109985375]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit Box" unique_id=1612464714]
+scale = Vector2(0.9, 2)
+shape = SubResource("RectangleShape2D_tumr7")
+
+[node name="DamageTimer" type="Timer" parent="." unique_id=900452409]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="area_shape_entered" from="Hit Box" to="." method="_on_hit_box_area_shape_entered"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]

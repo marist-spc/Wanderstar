@@ -12,6 +12,12 @@
 [ext_resource type="Script" uid="uid://dnyn2nmnjg0q6" path="res://door.gd" id="10_mx85b"]
 [ext_resource type="PackedScene" uid="uid://cpq1cegoh2xoc" path="res://dialogue_trigger.tscn" id="11_mx85b"]
 
+[sub_resource type="Curve2D" id="Curve2D_mx85b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2686, 495, 0, 0, 0, 0, 2739, 540, 0, 0, 0, 0, 2787, 495, 0, 0, 0, 0, 2824, 518, 0, 0, 0, 0, 2788, 539, 0, 0, 0, 0, 2740, 494, 0, 0, 0, 0, 2685, 541, 0, 0, 0, 0, 2656, 515, 0, 0, 0, 0, 2686, 495)
+}
+point_count = 9
+
 [node name="Level1" type="Node2D" unique_id=1039245021]
 
 [node name="Background" type="Node2D" parent="." unique_id=187422656]
@@ -85,6 +91,14 @@ position = Vector2(937, 83)
 
 [node name="DialogueTrigger4" parent="." unique_id=388997842 instance=ExtResource("11_mx85b")]
 position = Vector2(1201, 63)
+
+[node name="PathFollow2D" type="Path2D" parent="." unique_id=1348062662]
+position = Vector2(20, 3)
+curve = SubResource("Curve2D_mx85b")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathFollow2D" unique_id=1862228948]
+position = Vector2(2686, 495)
+rotation = 0.7039461
 
 [connection signal="recall" from="Wander" to="Star" method="_on_wander_recall"]
 [connection signal="star_attack" from="Wander" to="Star" method="_on_wander_star_attack"]
