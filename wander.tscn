@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://8e1pgbgnosv3" path="res://wander.gd" id="1_g1y5l"]
 [ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_dsosc"]
+[ext_resource type="Texture2D" uid="uid://dduavrxj3l0yf" path="res://art/Rosemary jump 2.PNG" id="3_pvftj"]
 [ext_resource type="Texture2D" uid="uid://dmibh21ml4gob" path="res://art/Walk 1.PNG" id="3_vg4kv"]
 [ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_8w8c0"]
+[ext_resource type="Texture2D" uid="uid://y885mcd0uxqq" path="res://art/Rosemary jump 1.PNG" id="4_s10lc"]
+[ext_resource type="Texture2D" uid="uid://bmbwdcaesgky3" path="res://art/Rosemary walk 3.PNG" id="6_kksgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
 size = Vector2(25, 22.25)
@@ -17,16 +20,33 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_dsosc")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vg4kv")
+"texture": ExtResource("2_dsosc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s10lc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pvftj")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kksgm")
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_8w8c0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vg4kv")
 }],
 "loop": 1,
 "name": &"walk",
@@ -57,8 +77,9 @@ horizontal_alignment = 1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
 scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_qpdv0")
-animation = &"walk"
-frame_progress = 0.93344706
+animation = &"jump"
+frame = 2
+frame_progress = 1.0
 offset = Vector2(40, 0)
 
 [node name="Hit Box" type="Area2D" parent="." unique_id=2109985375]
