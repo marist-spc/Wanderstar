@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cq4vrq76ribey" path="res://button.tscn" id="8_xy4tn"]
 [ext_resource type="PackedScene" uid="uid://ci8evlbbvayu4" path="res://door.tscn" id="9_5j5gb"]
 [ext_resource type="Script" uid="uid://dnyn2nmnjg0q6" path="res://door.gd" id="10_mx85b"]
+[ext_resource type="PackedScene" uid="uid://cpq1cegoh2xoc" path="res://dialogue_trigger.tscn" id="11_mx85b"]
 
 [node name="Level1" type="Node2D" unique_id=1039245021]
 
@@ -74,6 +75,11 @@ collision_layer = 2
 position = Vector2(1436, 442)
 script = ExtResource("10_mx85b")
 
+[node name="DialogueTrigger" parent="." unique_id=185464460 instance=ExtResource("11_mx85b")]
+
+[node name="DialogueTrigger2" parent="." unique_id=1255209266 instance=ExtResource("11_mx85b")]
+position = Vector2(200, 0)
+
 [connection signal="recall" from="Wander" to="Star" method="_on_wander_recall"]
 [connection signal="star_attack" from="Wander" to="Star" method="_on_wander_star_attack"]
 [connection signal="star_move" from="Wander" to="Star" method="_on_wander_star_move"]
@@ -84,3 +90,7 @@ script = ExtResource("10_mx85b")
 [connection signal="body_exited" from="CameraChange" to="Wander" method="_on_camera_change_body_exited"]
 [connection signal="area_entered" from="Button" to="Door" method="_on_button_area_entered"]
 [connection signal="body_entered" from="Button" to="Door" method="_on_button_body_entered"]
+[connection signal="body_entered" from="DialogueTrigger" to="Wander" method="_on_dialogue_trigger_body_entered"]
+[connection signal="body_exited" from="DialogueTrigger" to="Wander" method="_on_dialogue_trigger_body_exited"]
+[connection signal="body_entered" from="DialogueTrigger2" to="Wander" method="_on_dialogue_trigger_2_body_entered"]
+[connection signal="body_exited" from="DialogueTrigger2" to="Wander" method="_on_dialogue_trigger_2_body_exited"]

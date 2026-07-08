@@ -8,6 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
 size = Vector2(25, 22.25)
 
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 13
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
 animations = [{
 "frames": [{
@@ -42,6 +45,14 @@ shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1045556339]
 zoom = Vector2(3, 3)
+
+[node name="Dialogue" type="Label" parent="Camera2D" unique_id=791576669]
+offset_left = -192.0
+offset_top = 36.0
+offset_right = 191.0
+offset_bottom = 96.0
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
 scale = Vector2(0.02, 0.02)

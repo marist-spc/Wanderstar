@@ -88,3 +88,21 @@ func _on_camera_change_body_exited(body: Node2D) -> void:
 
 func _on_damage_timer_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+
+
+func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
+	#$Camera2D/Dialogue.set_deferred("testing")
+	$Camera2D/Dialogue.text = "WASD moves and Spacebar is to Jump!"
+	$Camera2D/Dialogue.show()
+
+func _on_dialogue_trigger_body_exited(body: Node2D) -> void:
+	$Camera2D/Dialogue.hide()
+
+func _on_dialogue_trigger_2_body_entered(body: Node2D) -> void:
+	#$Camera2D/Dialogue.set_deferred("testing")
+	$Camera2D/Dialogue.text = "Hold Right Click to Move Star
+	and left click to attack Enemies!"
+	$Camera2D/Dialogue.show()
+
+func _on_dialogue_trigger_2_body_exited(body: Node2D) -> void:
+	$Camera2D/Dialogue.hide()
