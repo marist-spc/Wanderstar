@@ -12,6 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dnws26r0rrsj7" path="res://art/Yellow star teleport 4.PNG" id="6_0ar2v"]
 [ext_resource type="Texture2D" uid="uid://cuv8jvsepy2l3" path="res://art/Shrunken yellow star 3.PNG" id="6_w0tmw"]
 [ext_resource type="AudioStream" uid="uid://coa8djq3fb3sj" path="res://art/Star attack.mp3" id="8_ynkmc"]
+[ext_resource type="Texture2D" uid="uid://da0ovwd67otkq" path="res://art/Purple explosion 1.PNG" id="12_8e4w3"]
+[ext_resource type="Texture2D" uid="uid://dv0hkbnet51k3" path="res://art/Purple explosion 2.PNG" id="13_ejbru"]
+[ext_resource type="Texture2D" uid="uid://bkiiqo0xyfj20" path="res://art/Purple explosion 3.PNG" id="14_yi0ly"]
+[ext_resource type="Texture2D" uid="uid://cx1vcw8evdtwq" path="res://art/Purple explosion 4.PNG" id="15_kmfvt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtt2"]
 size = Vector2(17.142857, 14.285713)
@@ -66,10 +70,22 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wjtt2"]
 animations = [{
-"frames": [],
-"loop": 1,
-"name": &"hide",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_8e4w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ejbru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yi0ly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_kmfvt")
+}],
+"loop": 0,
+"name": &"explode",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -79,6 +95,10 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tumr7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ers5m"]
 
 [node name="Star" type="CharacterBody2D" unique_id=33048179]
 collision_layer = 4
@@ -100,10 +120,18 @@ scale = Vector2(5, 1.5)
 shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="AttackAnimation" type="Sprite2D" parent="Node2D" unique_id=1438961231]
+visible = false
 position = Vector2(15, 0)
 scale = Vector2(0.018, 0.009)
 texture = ExtResource("2_0ar2v")
 flip_h = true
+
+[node name="RayCast2D" type="RayCast2D" parent="Node2D" unique_id=421301839]
+position = Vector2(0, -4)
+rotation = 4.712389
+target_position = Vector2(0, 10000000000)
+collision_mask = 11
+collide_with_areas = true
 
 [node name="Attack Timer" type="Timer" parent="." unique_id=1097621042]
 wait_time = 0.3
@@ -122,6 +150,27 @@ animation = &"hide"
 [node name="PurpleAnimations" type="AnimatedSprite2D" parent="SpriteController" unique_id=1319120787]
 scale = Vector2(0.01, 0.01)
 sprite_frames = SubResource("SpriteFrames_wjtt2")
-animation = &"hide"
+animation = &"explode"
+frame = 3
+frame_progress = 1.0
+
+[node name="ExplodeControl" type="Area2D" parent="." unique_id=1471295668]
+collision_layer = 4
+collision_mask = 8
+
+[node name="MovingHitbox" type="CollisionShape2D" parent="ExplodeControl" unique_id=2116041570]
+position = Vector2(0, -4)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_tumr7")
+
+[node name="Explosion" type="Area2D" parent="." unique_id=1537292162]
+collision_layer = 4
+collision_mask = 8
+
+[node name="ExplosionHitbox" type="CollisionShape2D" parent="Explosion" unique_id=1226421237]
+position = Vector2(0, -4)
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_ers5m")
 
 [connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="ExplodeControl" to="." method="_on_explode_control_body_entered"]

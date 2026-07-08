@@ -4,6 +4,7 @@ var target_position = position
 var colors = ["yellow", "purple"]
 var color_index = 0
 var current_star = "yellow"
+var star_speed_modifier = 1
 @export var wander: CharacterBody2D
 
 func _ready():
@@ -11,13 +12,15 @@ func _ready():
 	$Node2D/AttackAnimation.hide()
 	$SpriteController/YellowAnimations.play("idle")
 	$SpriteController/PurpleAnimations.play("hide")
+	$ExplodeControl/MovingHitbox.disabled = true
+	$Explosion/ExplosionHitbox.disabled = true
 
 
 
 func _physics_process(delta):
 	#move the star to wherever its supposed to be going
 	
-	if current_star == "purple":
+	if current_star == "purple" && $"Attack Timer".time_left <= 0:
 		target_position = wander.position
 	
 	if target_position != position:
@@ -31,11 +34,12 @@ func _physics_process(delta):
 		
 func _process(delta):
 	#makes the star follow mouse position
-	get_global_mouse_position()
-	look_at(get_global_mouse_position())
+	if $"Attack Timer".time_left <= 0:
+		get_global_mouse_position()
+		look_at(get_global_mouse_position())
 	
 	#normal movement stuff
-	position += velocity * delta
+	position += velocity * delta * star_speed_modifier
 	move_and_slide()
 	
 	
@@ -54,16 +58,31 @@ func _on_wander_star_move(pos):
 
 func _on_wander_star_attack():
 	#creates attack HB and starts a timer to recall the HB
-	$Node2D/AttackHitbox.disabled = false
-	$Node2D/AttackAnimation.show()
-	$"Attack Timer".start()
-	$AttackSound.play()
+	if current_star == "yellow":
+		$Node2D/AttackHitbox.disabled = false
+		$Node2D/AttackAnimation.show()
+		$"Attack Timer".start()
+		$AttackSound.play()
+	#launches star at cursor
+	elif current_star == "purple":
+		if $Node2D/RayCast2D.get_collider() != null:
+			target_position = $Node2D/RayCast2D.get_collider().global_position
+			star_speed_modifier = 2
+			$"Attack Timer".start()
+			$ExplodeControl/MovingHitbox.disabled = false
+		
 
 
 func _on_attack_timer_timeout():
 	#after amt of time end the attack
 	$Node2D/AttackHitbox.disabled = true
 	$Node2D/AttackAnimation.hide() 
+	star_speed_modifier = 1
+	if current_star == "purple":
+		position = wander.position
+		$ExplodeControl/MovingHitbox.disabled = true
+		$Explosion/ExplosionHitbox.disabled = true
+		$SpriteController/PurpleAnimations.play("idle")
 
 
 func _on_wander_star_swap() -> void:
@@ -71,7 +90,6 @@ func _on_wander_star_swap() -> void:
 	if color_index >= colors.size():
 		color_index = 0
 	current_star = colors[color_index]
-	print(current_star)
 	
 	#Show the current star anim and hide the inactive ones
 	if current_star == "yellow":
@@ -82,3 +100,10 @@ func _on_wander_star_swap() -> void:
 		$SpriteController/PurpleAnimations.visible = true
 		$SpriteController/YellowAnimations.visible = false
 		$SpriteController/PurpleAnimations.play("idle")
+
+#Collision check for the launched star
+func _on_explode_control_body_entered(body: Node2D) -> void:
+	$Explosion/ExplosionHitbox.set_deferred("disabled", false)
+	$"Attack Timer".start()
+	$SpriteController/PurpleAnimations.play("explode")
+	target_position = position
