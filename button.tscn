@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cq4vrq76ribey"]
+
+[ext_resource type="Script" uid="uid://cl122i8x25pg4" path="res://button.gd" id="1_vxja4"]
+[ext_resource type="Texture2D" uid="uid://dptmiiho2ahc8" path="res://art/Copilot_20260708_101018.png" id="2_lt4la"]
+[ext_resource type="Texture2D" uid="uid://cu58ogis6v823" path="res://art/Copilot_20260708_100834.png" id="3_4amfo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lt4la")
+}],
+"loop": 1,
+"name": &"Active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4amfo")
+}],
+"loop": 1,
+"name": &"Inactive",
+"speed": 5.0
+}]
+
+[node name="Button" type="Area2D" unique_id=1376307777]
+rotation = 1.5707964
+collision_layer = 6
+collision_mask = 4
+script = ExtResource("1_vxja4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=154104455]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1474329576]
+position = Vector2(8.1642685, 9)
+scale = Vector2(0.026638735, 0.022262836)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"Inactive"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ci8evlbbvayu4"]
+
+[ext_resource type="Texture2D" uid="uid://c5psy17ub6b1c" path="res://art/Copilot_20260707_141618.png" id="1_ba8gm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(12, 47)
+
+[node name="Door" type="RigidBody2D" unique_id=530096992]
+collision_layer = 2
+collision_mask = 13
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=605911987]
+position = Vector2(-5.722046e-06, 0)
+scale = Vector2(0.038085934, 0.035807293)
+texture = ExtResource("1_ba8gm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=65699183]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_g4v7s")

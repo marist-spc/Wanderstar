@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cpq1cegoh2xoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(81, 86)
+
+[node name="DialogueTrigger" type="Area2D" unique_id=185464460]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1067206377]
+position = Vector2(280.5, 373)
+shape = SubResource("RectangleShape2D_g4v7s")
