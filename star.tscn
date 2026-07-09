@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://dv0hkbnet51k3" path="res://art/Purple explosion 2.PNG" id="13_ejbru"]
 [ext_resource type="Texture2D" uid="uid://bkiiqo0xyfj20" path="res://art/Purple explosion 3.PNG" id="14_yi0ly"]
 [ext_resource type="Texture2D" uid="uid://cx1vcw8evdtwq" path="res://art/Purple explosion 4.PNG" id="15_kmfvt"]
+[ext_resource type="AudioStream" uid="uid://jfgwgqdotq0v" path="res://art/explosion.mp3" id="17_ejbru"]
+[ext_resource type="AudioStream" uid="uid://bylshawqp00ab" path="res://art/Star teleportation.mp3" id="18_yi0ly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjtt2"]
 size = Vector2(17.142857, 14.285713)
@@ -171,6 +173,12 @@ collision_mask = 8
 position = Vector2(0, -4)
 scale = Vector2(2.5, 2.5)
 shape = SubResource("CircleShape2D_ers5m")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=703659308]
+stream = ExtResource("17_ejbru")
+
+[node name="TeleportSound" type="AudioStreamPlayer2D" parent="." unique_id=1968326353]
+stream = ExtResource("18_yi0ly")
 
 [connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="ExplodeControl" to="." method="_on_explode_control_body_entered"]

@@ -21,8 +21,8 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
 		$AnimatedSprite2D.play("jump")
+		$JumpSound.play()
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -53,19 +53,19 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_left"):
 		if is_on_floor():
 			$AnimatedSprite2D.play("walk")
+			$WalkSound.play()
 		$AnimatedSprite2D.flip_h = true
 
 	elif Input.is_action_pressed("move_right"):
 		if is_on_floor():
 			$AnimatedSprite2D.play("walk")
+			$WalkSound.play()
 		$AnimatedSprite2D.flip_h = false
 	
 	elif is_on_floor():
-		print("sigma")
 		$AnimatedSprite2D.play("idle")
 	
 	if Input.is_action_just_pressed("jump"):
-		print("boomshakalaka")
 		$AnimatedSprite2D.play("jump")
 	
 	print($AnimatedSprite2D.animation)
@@ -77,6 +77,7 @@ func _on_fall_detector_body_entered(body: Node) -> void:
 	$DamageTimer.start()
 	fallbackpos.x -= 75
 	position = fallbackpos
+	$DamageSound.play()
 
 func _on_camera_change_body_entered(body: Node2D) -> void:
 	$Camera2D.zoom.x = 2
@@ -92,15 +93,16 @@ func _on_damage_timer_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
 
 func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "WASD moves and Spacebar is to Jump!"
+	$Camera2D/Dialogue.text = "A and D moves Rosemary
+	and Spacebar is to jump!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
 func _on_dialogue_trigger_2_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Hold Right Click to Move Star
-	and left click to attack Enemies!"
+	$Camera2D/Dialogue.text = "Hold Right Click to move Star
+	and Left Click to attack Enemies!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_2_body_exited(body: Node2D) -> void:
@@ -115,8 +117,17 @@ func _on_dialogue_trigger_3_body_exited(body: Node2D) -> void:
 
 
 func _on_dialogue_trigger_4_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Press Q to Call Star Back!"
+	$Camera2D/Dialogue.text = "Press Q to call Star Back and
+	E changes Star's attack type!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_4_body_exited(body: Node2D) -> void:
+	$Camera2D/Dialogue.hide()
+
+func _on_dialogue_trigger_5_body_entered(body: Node2D) -> void:
+	$Camera2D/Dialogue.text = "Purple Star Launches itself in
+	a straight line and explodes!"
+	$Camera2D/Dialogue.show()
+
+func _on_dialogue_trigger_5_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()

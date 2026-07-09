@@ -50,6 +50,7 @@ func _on_wander_recall(pos):
 		position = pos
 		target_position = pos
 		$SpriteController/YellowAnimations.play("teleport")
+		$TeleportSound.play()
 	
 func _on_wander_star_move(pos):
 	if current_star != "purple":
@@ -107,4 +108,5 @@ func _on_explode_control_body_entered(body: Node2D) -> void:
 	$Explosion/ExplosionHitbox.set_deferred("disabled", false)
 	$"Attack Timer".start()
 	$SpriteController/PurpleAnimations.play("explode")
+	$ExplosionSound.play()
 	target_position = position

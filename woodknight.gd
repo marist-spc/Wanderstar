@@ -7,6 +7,9 @@ var health = 15
 
 @onready var path_follow: PathFollow2D = get_parent()
 
+func ready():
+	$AnimatedSprite2D.play("float")
+	
 func _process(_delta: float) -> void:
 	global_rotation = 0.0
 	
@@ -38,7 +41,5 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 	if health == 0:
 		queue_free()
 	
-
-
 func _on_damage_taken_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)

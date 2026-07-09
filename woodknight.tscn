@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://cn0edghhje151"]
 
 [ext_resource type="Script" uid="uid://b1imdaoshr13y" path="res://woodknight.gd" id="1_1gm4f"]
-[ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_pu8aw"]
-[ext_resource type="Texture2D" uid="uid://dmibh21ml4gob" path="res://art/Walk 1.PNG" id="3_vwbba"]
-[ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_6fam0"]
+[ext_resource type="Texture2D" uid="uid://dlchgmoe6y0tp" path="res://art/Mini boss attack 1.PNG" id="2_kapix"]
+[ext_resource type="Texture2D" uid="uid://c3j5stc07bpr0" path="res://art/Mini boss attack_2.PNG" id="3_l6u1p"]
+[ext_resource type="Texture2D" uid="uid://swdy737u6th8" path="res://art/Mini boss attack _3.PNG" id="4_arxkf"]
+[ext_resource type="Texture2D" uid="uid://d0njxr4pbhnrb" path="res://art/Mini boss attack_4.PNG" id="5_ory1j"]
+[ext_resource type="Texture2D" uid="uid://brgb0pk6lp6o6" path="res://art/Mini boss animation 1.PNG" id="6_um8h5"]
+[ext_resource type="Texture2D" uid="uid://cmx0ybmnyiytg" path="res://art/Mini boss animation 2.PNG" id="7_gjwhf"]
+[ext_resource type="Texture2D" uid="uid://dlbjmongrx03r" path="res://art/Mini boss animation 3.PNG" id="8_5u7yt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpdv0"]
 size = Vector2(25, 22.25)
@@ -12,21 +16,33 @@ size = Vector2(25, 22.25)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_pu8aw")
+"texture": ExtResource("2_kapix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l6u1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_arxkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ory1j")
 }],
 "loop": 1,
-"name": &"idle",
+"name": &"attack",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vwbba")
+"texture": ExtResource("6_um8h5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_6fam0")
+"texture": ExtResource("7_gjwhf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5u7yt")
 }],
 "loop": 1,
-"name": &"walk",
+"name": &"float",
 "speed": 5.0
 }]
 
@@ -44,8 +60,7 @@ shape = SubResource("RectangleShape2D_qpdv0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
 scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_qpdv0")
-animation = &"walk"
-frame_progress = 0.93344706
+animation = &"float"
 offset = Vector2(40, 0)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2109985375]

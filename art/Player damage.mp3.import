@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://br15vt7ojihce"
+path="res://.godot/imported/Player damage.mp3-fec0a854e02c5b5c81ec1d737cb4e14a.mp3str"
+
+[deps]
+
+source_file="res://art/Player damage.mp3"
+dest_files=["res://.godot/imported/Player damage.mp3-fec0a854e02c5b5c81ec1d737cb4e14a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
