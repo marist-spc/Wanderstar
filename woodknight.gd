@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	# Increase the knight's progress along the path by speed * time
 	path_follow.progress += speed * delta
 
-@export var mob_scene: PackedScene
+@export var mob_scene: PackedScene #This Code was taken from Squash the Creeps
 
 #func _on_mob_timer_timeout(): #Spawns Projectiles
 	#var mob = projectile_scene.instantiate()
