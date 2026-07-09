@@ -7,9 +7,14 @@ var health = 15
 
 @onready var path_follow: PathFollow2D = get_parent()
 
+@export var projectile_scene: PackedScene
+
 func ready():
 	$AnimatedSprite2D.play("float")
-	
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	$ProjectileTimer.start
+
 func _process(_delta: float) -> void:
 	global_rotation = 0.0
 	
@@ -17,8 +22,21 @@ func _physics_process(delta: float) -> void:
 	# Increase the knight's progress along the path by speed * time
 	path_follow.progress += speed * delta
 
-@export var mob_scene: PackedScene #This Code was taken from Squash the Creeps
+func _on_projectile_timer_timeout():
+	# Create a new instance of the Mob scene.
+	var projectile = projectile_scene.instantiate()
 
+	# Choose a random location on Path2D.
+	var projectile_spawn_location = $ProjectileSpawn
+
+	# Set the mob's position to the random location.
+	projectile.position = projectile_spawn_location.position
+	# Choose the velocity for the mob.
+	projectile.velocity = Vector2(randf_range(-150.0, 150.0), randf_range(150.0, 250.0))
+
+	# Spawn the mob by adding it to the Main scene.
+	add_child(projectile)
+	
 #func _on_mob_timer_timeout(): #Spawns Projectiles
 	#var mob = projectile_scene.instantiate()
 	## Choose a random location on the SpawnPath.

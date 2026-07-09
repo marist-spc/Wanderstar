@@ -23,8 +23,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		$AnimatedSprite2D.play("jump")
 		$JumpSound.play()
-
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_pressed("move_left"):
@@ -35,7 +33,6 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		#$AnimatedSprite2D.play("idle")
 		
 	if Input.is_action_pressed("star_return"):
 		#move star to player
@@ -114,7 +111,6 @@ func _on_dialogue_trigger_3_body_entered(body: Node2D) -> void:
 
 func _on_dialogue_trigger_3_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
-
 
 func _on_dialogue_trigger_4_body_entered(body: Node2D) -> void:
 	$Camera2D/Dialogue.text = "Press Q to call Star Back and
