@@ -1,17 +1,7 @@
 extends CharacterBody2D
 
 #projectile launch
-var health = 3
-		#
-#func _physics_process(delta: float): #Basic Goomba Code
-	#
-	#if direction == -1:
-		#$AnimatedSprite2D.flip_h = false
-		#$RayCast2D.position.x == $Body.shape.get_rect().size.x
-	#else:
-		#$AnimatedSprite2D.flip_h = true
-		#$RayCast2D.position.x == $Body.shape.get_rect().size.x
-	#$AnimatedSprite2D.play("walk")
+var health = 15
 	
 @export var speed: float = 75.0
 
@@ -21,9 +11,25 @@ func _process(_delta: float) -> void:
 	global_rotation = 0.0
 	
 func _physics_process(delta: float) -> void:
-	# Increase the mob's progress along the path by speed * time
+	# Increase the knight's progress along the path by speed * time
 	path_follow.progress += speed * delta
-	$AnimatedSprite2D.rotation = 0
+
+@export var mob_scene: PackedScene
+
+#func _on_mob_timer_timeout(): #Spawns Projectiles
+	#var mob = projectile_scene.instantiate()
+	## Choose a random location on the SpawnPath.
+	## We store the reference to the SpawnLocation node.
+	#var mob_spawn_location = Woodknight
+	## And give it a random offset.
+	#mob_spawn_location.progress_ratio = randf()
+#
+	#var player_position = $Player.position
+	#
+	#mob.initialize(mob_spawn_location.position, player_position)
+	## Spawn the mob by adding it to the Main scene.
+	#add_child(mob)
+	## We connect the mob to the score label to update the score upon squashing one.
 
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	health -= 1
