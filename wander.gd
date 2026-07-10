@@ -96,6 +96,7 @@ func _on_camera_change_body_exited(body: Node2D) -> void:
 
 func _on_damage_timer_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+	$"Hit Box/CollisionShape2D".disabled = false
 
 func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
 
@@ -136,6 +137,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 func damage_taken():
 	health -= 1
 	$AnimatedSprite2D.modulate = Color(1, 0, 0)
+	$"Hit Box/CollisionShape2D".disabled = true
 	$DamageTimer.start()
 	if health == 2:
 		$Camera2D/HeartHUD/Heart3.play("empty")
