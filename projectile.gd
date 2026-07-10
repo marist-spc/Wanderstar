@@ -1,16 +1,20 @@
-extends Area2D
+extends CharacterBody2D
 
-var velocity:Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 		$Explosion/ExplosionHitbox.disabled = true
+		velocity.x = randi_range(-60, 60)
+		velocity.y = 40
+		#velocity = Vector2.ZERO
 		
 func _physics_process(delta: float) -> void:
-	#move_and_slide()
+	
 	position += velocity * delta
+	move_and_slide()
 	
 func _on_explode_control_body_entered(body: Node2D) -> void:
 	$Explosion/ExplosionHitbox.set_deferred("disabled", false)
+	#$Explosion/ExplosionHitbox.disabledd = false
 	$"Attack Timer".start()
 	$AnimatedSprite2D.play("explode")
 	$ExplosionSound.play()

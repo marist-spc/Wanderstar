@@ -44,30 +44,31 @@ radius = 15.779085
 [sub_resource type="CircleShape2D" id="CircleShape2D_wpwum"]
 radius = 8.4
 
-[node name="Projectile" type="Area2D" unique_id=2077922938 groups=["projectile"]]
-collision_layer = 10
-collision_mask = 3
+[node name="Projectile" type="CharacterBody2D" unique_id=1171225305 groups=["projectile"]]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_dac07")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1227509085]
 position = Vector2(-6, 12)
-rotation = 3.3946655
+rotation = -2.8885198
 scale = Vector2(0.025, 0.025)
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"explode"
+animation = &"falling"
 
 [node name="Attack Timer" type="Timer" parent="." unique_id=1209569277]
 wait_time = 0.3
 one_shot = true
 
 [node name="ExplodeControl" type="Area2D" parent="." unique_id=2037587926]
-collision_layer = 10
-collision_mask = 3
+collision_layer = 8
+collision_mask = 2
 
 [node name="MovingHitbox" type="CollisionShape2D" parent="ExplodeControl" unique_id=1749916200]
 position = Vector2(-2.9999998, 6)
 scale = Vector2(0.7, 0.7)
 shape = SubResource("CircleShape2D_yf5fn")
+debug_color = Color(0, 0.54388463, 0.94675046, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609212678]
 position = Vector2(-3, 6)
@@ -75,15 +76,16 @@ shape = SubResource("CircleShape2D_57qmd")
 
 [node name="Explosion" type="Area2D" parent="." unique_id=1976306306]
 collision_layer = 8
+collision_mask = 0
 
 [node name="ExplosionHitbox" type="CollisionShape2D" parent="Explosion" unique_id=1070966205]
 position = Vector2(-1.9999999, -1.0000002)
 scale = Vector2(2.5, 2.5)
 shape = SubResource("CircleShape2D_wpwum")
+debug_color = Color(0.93473923, 1.9444824e-05, 0.64137924, 0.41960785)
 
 [node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=1605157130]
 stream = ExtResource("7_0c7x6")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="ExplodeControl" to="." method="_on_explode_control_body_entered"]
