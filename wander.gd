@@ -123,7 +123,8 @@ func _on_dialogue_trigger_3_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
 func _on_dialogue_trigger_4_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Press Q to call Star Back and E changes Star's attack type!"
+	$Camera2D/Dialogue.text = "Press Q to call Star Back
+	and E changes Star's attack type!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_4_body_exited(body: Node2D) -> void:
@@ -165,8 +166,21 @@ func _on_button_pressed() -> void:
 	
 
 func _on_dialogue_trigger_5_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Purple Star Launches itself in a straight line and explodes!"
+	$Camera2D/Dialogue.text = "Purple Star Launches itself
+	in a straight line and explodes!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_5_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
+
+
+func _on_camera_change_2_body_entered(body: Node2D) -> void:
+	$Camera2D.zoom.x = 2
+	$Camera2D.zoom.y = 2
+	$Camera2D.offset.y = -100
+
+
+func _on_camera_change_2_body_exited(body: Node2D) -> void:
+	$Camera2D.zoom.x = 3
+	$Camera2D.zoom.y = 3
+	$Camera2D.offset.y = 0
