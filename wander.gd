@@ -15,6 +15,7 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("idle")
 	$Camera2D/GameOverHud/Button.visible = false
 	$Camera2D/GameOverHud/Label.visible = false
+	$Camera2D/HeartHUD/Heart1.play("full")
 
 
 func _physics_process(delta: float) -> void:
@@ -128,8 +129,13 @@ func damage_taken():
 	health -= 1
 	$AnimatedSprite2D.modulate = Color(1, 0, 0)
 	$DamageTimer.start()
+	if health == 2:
+		$Camera2D/HeartHUD/Heart3.play("empty")
+	if health == 1:
+		$Camera2D/HeartHUD/Heart2.play("empty")
 	if health == 0:
 		#queue_free()
+		$Camera2D/HeartHUD/Heart1.play("empty")
 		$Camera2D/GameOverHud/Button.visible = true
 		$Camera2D/GameOverHud/Label.visible = true
 		input_enabled = false
@@ -143,4 +149,9 @@ func _on_button_pressed() -> void:
 	input_enabled = true
 	$Camera2D/GameOverHud/Button.visible = false
 	$Camera2D/GameOverHud/Label.visible = false
+	health = 3
+	$Camera2D/HeartHUD/Heart1.play("full")
+	$Camera2D/HeartHUD/Heart2.play("full")
+	$Camera2D/HeartHUD/Heart3.play("full")
+	recall.emit(position)
 	

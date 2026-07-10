@@ -1,13 +1,5 @@
 extends Node2D
 
-
-
-#func _on_wander_player_death() -> void:
+func _on_wander_new_game() -> void:
 	
-	#get_tree().paused = true
-	
-
-
-#func _on_wander_new_game() -> void:
-	
-	#get_tree().paused = false
+	get_tree().reload_current_scene()

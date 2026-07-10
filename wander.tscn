@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://8e1pgbgnosv3" path="res://wander.gd" id="1_g1y5l"]
 [ext_resource type="Texture2D" uid="uid://idih5jxuwh6y" path="res://art/IMG_6549.PNG" id="2_dsosc"]
+[ext_resource type="FontFile" uid="uid://fdl4evh7q1vt" path="res://art/Xolonium-Regular.ttf" id="2_kksgm"]
+[ext_resource type="Texture2D" uid="uid://dfvww1no3lrms" path="res://art/heartempty.png" id="3_bses5"]
 [ext_resource type="Texture2D" uid="uid://dduavrxj3l0yf" path="res://art/Rosemary jump 2.PNG" id="3_pvftj"]
 [ext_resource type="Texture2D" uid="uid://dmibh21ml4gob" path="res://art/Walk 1.PNG" id="3_vg4kv"]
 [ext_resource type="Texture2D" uid="uid://cfpiqvhdg1qcy" path="res://art/Rosemary walk 2.PNG" id="4_8w8c0"]
+[ext_resource type="Texture2D" uid="uid://dhlabwr5r7c86" path="res://art/heartfull.png" id="4_emgf0"]
 [ext_resource type="Texture2D" uid="uid://y885mcd0uxqq" path="res://art/Rosemary jump 1.PNG" id="4_s10lc"]
 [ext_resource type="Texture2D" uid="uid://bmbwdcaesgky3" path="res://art/Rosemary walk 3.PNG" id="6_kksgm"]
 
@@ -12,7 +15,27 @@
 font_size = 13
 
 [sub_resource type="LabelSettings" id="LabelSettings_s10lc"]
+font = ExtResource("2_kksgm")
 font_size = 36
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjtt2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bses5")
+}],
+"loop": 1,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_emgf0")
+}],
+"loop": 1,
+"name": &"full",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qpdv0"]
 animations = [{
@@ -70,6 +93,7 @@ offset_left = -192.0
 offset_top = 36.0
 offset_right = 191.0
 offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("2_kksgm")
 label_settings = SubResource("LabelSettings_g4v7s")
 horizontal_alignment = 1
 
@@ -81,30 +105,54 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = 66.0
-offset_right = 25.0
-offset_bottom = 97.0
+offset_left = -56.0
+offset_top = 51.0
+offset_right = -1.0
+offset_bottom = 82.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_kksgm")
 text = "Retry"
+icon_alignment = 1
 
 [node name="Label" type="Label" parent="Camera2D/GameOverHud" unique_id=609439649]
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -70.5
-offset_top = 100.0
-offset_right = 70.5
-offset_bottom = 136.0
+anchor_bottom = 0.5
+offset_left = -104.5
+offset_top = -174.0
+offset_right = 104.5
+offset_bottom = -130.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
 text = "Game Over"
 label_settings = SubResource("LabelSettings_s10lc")
+
+[node name="HeartHUD" type="Node2D" parent="Camera2D" unique_id=1066071792]
+position = Vector2(-170, -95)
+
+[node name="Heart1" type="AnimatedSprite2D" parent="Camera2D/HeartHUD" unique_id=641129330]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_wjtt2")
+animation = &"full"
+
+[node name="Heart2" type="AnimatedSprite2D" parent="Camera2D/HeartHUD" unique_id=1088596658]
+position = Vector2(10, 0)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_wjtt2")
+animation = &"full"
+
+[node name="Heart3" type="AnimatedSprite2D" parent="Camera2D/HeartHUD" unique_id=2028737927]
+position = Vector2(20, 0)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_wjtt2")
+animation = &"full"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1321029077]
 scale = Vector2(0.02, 0.02)

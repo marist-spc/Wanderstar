@@ -129,8 +129,8 @@ flip_h = true
 [node name="RayCast2D" type="RayCast2D" parent="Node2D" unique_id=421301839]
 position = Vector2(0, -4)
 rotation = 4.712389
-target_position = Vector2(0, 10000000000)
-collision_mask = 11
+target_position = Vector2(0, 400)
+collision_mask = 8
 collide_with_areas = true
 
 [node name="Attack Timer" type="Timer" parent="." unique_id=1097621042]

@@ -15,6 +15,10 @@ func _ready():
 	$SpriteController/PurpleAnimations.visible = false
 	$ExplodeControl/MovingHitbox.disabled = true
 	$Explosion/ExplosionHitbox.disabled = true
+	target_position = wander.position
+	target_position.y -= 30
+	
+	
 
 
 
@@ -22,7 +26,8 @@ func _physics_process(delta):
 	#move the star to wherever its supposed to be going
 	
 	if current_star == "purple" && $"Attack Timer".time_left <= 0:
-		target_position = wander.position
+		target_position.y = wander.position.y - 25
+		target_position.x = wander.position.x
 	
 	if target_position != position:
 		var direction = (target_position - position).normalized()
@@ -65,9 +70,14 @@ func _on_wander_star_attack():
 		$"Attack Timer".start()
 		$AttackSound.play()
 	#launches star at cursor
-	elif current_star == "purple":
+	elif current_star == "purple" && $"Attack Timer".time_left <= 0:
 		if $Node2D/RayCast2D.get_collider() != null:
 			target_position = $Node2D/RayCast2D.get_collider().global_position
+			star_speed_modifier = 2
+			$"Attack Timer".start()
+			$ExplodeControl/MovingHitbox.disabled = false
+		else:
+			target_position = get_global_mouse_position()
 			star_speed_modifier = 2
 			$"Attack Timer".start()
 			$ExplodeControl/MovingHitbox.disabled = false
