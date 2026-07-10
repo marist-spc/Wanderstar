@@ -141,6 +141,7 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 func damage_taken():
 	health -= 1
 	$AnimatedSprite2D.modulate = Color(1, 0, 0)
+	$"Hit Box/CollisionShape2D".disabled = true
 	$DamageTimer.start()
 	$"Hit Box/CollisionShape2D".disabled = true
 	if health == 2:
@@ -154,12 +155,12 @@ func damage_taken():
 		$Camera2D/GameOverHud/Label.visible = true
 		input_enabled = false
 		player_death.emit()
-		position = Vector2(183, 394)
 
 
 
 func _on_button_pressed() -> void:
 	new_game.emit()
+	position = Vector2(183, 394)
 	input_enabled = true
 	$Camera2D/GameOverHud/Button.visible = false
 	$Camera2D/GameOverHud/Label.visible = false
@@ -189,3 +190,11 @@ func _on_camera_change_2_body_exited(body: Node2D) -> void:
 	$Camera2D.zoom.x = 3
 	$Camera2D.zoom.y = 3
 	$Camera2D.offset.y = 0
+
+
+
+func _on_woodknight_boss_dead() -> void:
+	$Camera2D/GameOverHud/Label.text = "You Won!!!"
+	$Camera2D/GameOverHud/Button.visible = true
+	$Camera2D/GameOverHud/Label.visible = true
+	input_enabled = false

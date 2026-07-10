@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal boss_dead
+
 #projectile launch
 var health = 15
 	
@@ -58,6 +60,8 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 	$DamageTaken.start()
 	if health == 0:
 		queue_free()
+		boss_dead.emit()
+		
 	
 func _on_damage_taken_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)

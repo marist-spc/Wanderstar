@@ -168,7 +168,7 @@ scale = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_qpdv0")
 
 [node name="DamageTimer" type="Timer" parent="." unique_id=900452409]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1612464714]
