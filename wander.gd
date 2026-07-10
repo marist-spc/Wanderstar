@@ -172,8 +172,6 @@ func _on_dialogue_trigger_5_body_entered(body: Node2D) -> void:
 
 func _on_dialogue_trigger_5_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
-<<<<<<< Updated upstream
-=======
 
 
 func _on_camera_change_2_body_entered(body: Node2D) -> void:
@@ -193,4 +191,3 @@ func _on_woodknight_boss_dead() -> void:
 	$Camera2D/GameOverHud/Button.visible = true
 	$Camera2D/GameOverHud/Label.visible = true
 	input_enabled = false
->>>>>>> Stashed changes
