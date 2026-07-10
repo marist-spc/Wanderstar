@@ -101,7 +101,8 @@ func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
 
 	$Camera2D/Dialogue.text = "WASD moves and Spacebar Jumps!"
 
-	$Camera2D/Dialogue.text = "A and D moves Rosemary and Spacebar is to jump!"
+	$Camera2D/Dialogue.text = "A and D moves Rosemary
+	and Spacebar is to jump!"
 
 	$Camera2D/Dialogue.show()
 
@@ -109,14 +110,16 @@ func _on_dialogue_trigger_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
 func _on_dialogue_trigger_2_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Hold Right Click to move Star and Left Click to attack Enemies!"
+	$Camera2D/Dialogue.text = "Hold Right Click to move Star
+	and Left Click to attack Enemies!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_2_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
 func _on_dialogue_trigger_3_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Monoliths appear when there is a puzzle to be solved!"
+	$Camera2D/Dialogue.text = "Monoliths appear when there is
+	a puzzle to be solved!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_3_body_exited(body: Node2D) -> void:
