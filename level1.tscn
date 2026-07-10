@@ -130,3 +130,9 @@ rotation = 0.5375867
 [connection signal="body_exited" from="DialogueTrigger4" to="Wander" method="_on_dialogue_trigger_4_body_exited"]
 [connection signal="body_entered" from="DialogueTrigger5" to="Wander" method="_on_dialogue_trigger_5_body_entered"]
 [connection signal="body_exited" from="DialogueTrigger5" to="Wander" method="_on_dialogue_trigger_5_body_exited"]
+<<<<<<< Updated upstream
+=======
+[connection signal="boss_dead" from="PathFollow2D/PathFollow2D/Woodknight" to="Wander" method="_on_woodknight_boss_dead"]
+[connection signal="body_entered" from="CameraChange2" to="Wander" method="_on_camera_change_2_body_entered"]
+[connection signal="body_exited" from="CameraChange2" to="Wander" method="_on_camera_change_2_body_exited"]
+>>>>>>> Stashed changes

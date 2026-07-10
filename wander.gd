@@ -150,12 +150,12 @@ func damage_taken():
 		$Camera2D/GameOverHud/Label.visible = true
 		input_enabled = false
 		player_death.emit()
-		position = Vector2(183, 394)
 
 
 
 func _on_button_pressed() -> void:
 	new_game.emit()
+	position = Vector2(183, 394)
 	input_enabled = true
 	$Camera2D/GameOverHud/Button.visible = false
 	$Camera2D/GameOverHud/Label.visible = false
@@ -172,3 +172,25 @@ func _on_dialogue_trigger_5_body_entered(body: Node2D) -> void:
 
 func _on_dialogue_trigger_5_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
+<<<<<<< Updated upstream
+=======
+
+
+func _on_camera_change_2_body_entered(body: Node2D) -> void:
+	$Camera2D.zoom.x = 2
+	$Camera2D.zoom.y = 2
+	$Camera2D.offset.y = -100
+
+
+func _on_camera_change_2_body_exited(body: Node2D) -> void:
+	$Camera2D.zoom.x = 3
+	$Camera2D.zoom.y = 3
+	$Camera2D.offset.y = 0
+
+
+func _on_woodknight_boss_dead() -> void:
+	$Camera2D/GameOverHud/Label.text = "You Won!!!"
+	$Camera2D/GameOverHud/Button.visible = true
+	$Camera2D/GameOverHud/Label.visible = true
+	input_enabled = false
+>>>>>>> Stashed changes

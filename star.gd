@@ -58,7 +58,7 @@ func _on_wander_star_move(pos):
 
 func _on_wander_star_attack():
 	#creates attack HB and starts a timer to recall the HB
-	if current_star == "yellow":
+	if current_star == "yellow" && $"Attack Timer".time_left <= 0:
 		$Node2D/AttackHitbox.disabled = false
 		$Node2D/AttackAnimation.show()
 		$"Attack Timer".start()
