@@ -16,6 +16,8 @@ func _ready() -> void:
 	$Camera2D/GameOverHud/Button.visible = false
 	$Camera2D/GameOverHud/Label.visible = false
 	$Camera2D/HeartHUD/Heart1.play("full")
+	$Camera2D/HeartHUD/Heart2.play("full")
+	$Camera2D/HeartHUD/Heart3.play("full")
 
 
 func _physics_process(delta: float) -> void:
@@ -27,11 +29,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor() && input_enabled:
 		velocity.y = JUMP_VELOCITY
-
 		$AnimatedSprite2D.play("jump")
-
-
-	# Get the input direcion and handle the movement/deceleration.
+	
+		$JumpSound.play()
+	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if Input.is_action_pressed("move_left") && input_enabled:
 		velocity.x = -SPEED
@@ -58,11 +59,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("move_left")&& input_enabled:
 		if is_on_floor():
 			$AnimatedSprite2D.play("walk")
+			$WalkSound.play()
 		$AnimatedSprite2D.flip_h = true
 
 	elif Input.is_action_pressed("move_right") && input_enabled:
 		if is_on_floor():
 			$AnimatedSprite2D.play("walk")
+			$WalkSound.play()
 		$AnimatedSprite2D.flip_h = false
 	
 	elif is_on_floor():
@@ -78,6 +81,9 @@ func _on_fall_detector_body_entered(body: Node) -> void:
 	position = fallbackpos
 	damage_taken()
 
+	$DamageSound.play()
+
+
 func _on_camera_change_body_entered(body: Node2D) -> void:
 	$Camera2D.zoom.x = 2
 	$Camera2D.zoom.y = 2
@@ -92,15 +98,18 @@ func _on_damage_timer_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color(1, 1, 1)
 
 func _on_dialogue_trigger_body_entered(body: Node2D) -> void:
+
 	$Camera2D/Dialogue.text = "WASD moves and Spacebar Jumps!"
+
+	$Camera2D/Dialogue.text = "A and D moves Rosemary and Spacebar is to jump!"
+
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
 func _on_dialogue_trigger_2_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Hold Right Click to Move Star
-	and left click to attack Enemies!"
+	$Camera2D/Dialogue.text = "Hold Right Click to move Star and Left Click to attack Enemies!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_2_body_exited(body: Node2D) -> void:
@@ -113,9 +122,8 @@ func _on_dialogue_trigger_3_body_entered(body: Node2D) -> void:
 func _on_dialogue_trigger_3_body_exited(body: Node2D) -> void:
 	$Camera2D/Dialogue.hide()
 
-
 func _on_dialogue_trigger_4_body_entered(body: Node2D) -> void:
-	$Camera2D/Dialogue.text = "Press Q to Call Star Back!"
+	$Camera2D/Dialogue.text = "Press Q to call Star Back and E changes Star's attack type!"
 	$Camera2D/Dialogue.show()
 
 func _on_dialogue_trigger_4_body_exited(body: Node2D) -> void:
@@ -155,3 +163,10 @@ func _on_button_pressed() -> void:
 	$Camera2D/HeartHUD/Heart3.play("full")
 	recall.emit(position)
 	
+
+func _on_dialogue_trigger_5_body_entered(body: Node2D) -> void:
+	$Camera2D/Dialogue.text = "Purple Star Launches itself in a straight line and explodes!"
+	$Camera2D/Dialogue.show()
+
+func _on_dialogue_trigger_5_body_exited(body: Node2D) -> void:
+	$Camera2D/Dialogue.hide()

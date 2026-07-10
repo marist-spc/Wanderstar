@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b3bnpepf4c77j"]
+
+[ext_resource type="Texture2D" uid="uid://c2jrm08wismab" path="res://art/Mini boss orb 3.PNG" id="1_2xblw"]
+[ext_resource type="Script" uid="uid://csg6a8rxejbq3" path="res://projectile.gd" id="1_dac07"]
+[ext_resource type="Texture2D" uid="uid://cofdpjxm5ua20" path="res://art/Mini boss orb 4.PNG" id="2_dac07"]
+[ext_resource type="Texture2D" uid="uid://b0ts8hylpat1f" path="res://art/Mini boss orb 5.PNG" id="3_0c7x6"]
+[ext_resource type="Texture2D" uid="uid://nnxbyp7i4o1w" path="res://art/Mini boss orb 1.PNG" id="4_wpwum"]
+[ext_resource type="Texture2D" uid="uid://ci3tfqnuhqu8g" path="res://art/Mini boss orb 2.PNG" id="5_nsmhe"]
+[ext_resource type="AudioStream" uid="uid://jfgwgqdotq0v" path="res://art/explosion.mp3" id="7_0c7x6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2xblw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dac07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0c7x6")
+}],
+"loop": 1,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wpwum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nsmhe")
+}],
+"loop": 1,
+"name": &"falling",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
+radius = 15.779085
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57qmd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpwum"]
+radius = 8.4
+
+[node name="Projectile" type="Area2D" unique_id=2077922938 groups=["projectile"]]
+collision_layer = 10
+collision_mask = 3
+script = ExtResource("1_dac07")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1227509085]
+position = Vector2(-6, 12)
+rotation = 3.3946655
+scale = Vector2(0.025, 0.025)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"explode"
+
+[node name="Attack Timer" type="Timer" parent="." unique_id=1209569277]
+wait_time = 0.3
+one_shot = true
+
+[node name="ExplodeControl" type="Area2D" parent="." unique_id=2037587926]
+collision_layer = 10
+collision_mask = 3
+
+[node name="MovingHitbox" type="CollisionShape2D" parent="ExplodeControl" unique_id=1749916200]
+position = Vector2(-2.9999998, 6)
+scale = Vector2(0.7, 0.7)
+shape = SubResource("CircleShape2D_yf5fn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609212678]
+position = Vector2(-3, 6)
+shape = SubResource("CircleShape2D_57qmd")
+
+[node name="Explosion" type="Area2D" parent="." unique_id=1976306306]
+collision_layer = 8
+
+[node name="ExplosionHitbox" type="CollisionShape2D" parent="Explosion" unique_id=1070966205]
+position = Vector2(-1.9999999, -1.0000002)
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_wpwum")
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="." unique_id=1605157130]
+stream = ExtResource("7_0c7x6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Attack Timer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="ExplodeControl" to="." method="_on_explode_control_body_entered"]
